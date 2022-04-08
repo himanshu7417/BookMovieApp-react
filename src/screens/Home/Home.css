@@ -1,0 +1,20 @@
+.headerBar {
+    background-color: #ff9999;
+    padding: 8px;
+    text-align: center;
+    font-size: 1rem;
+}
+.flex-container {
+    display: flex;
+}
+.Image-List {
+    cursor: pointer;
+}
+.left {
+    max-width: 76%;
+    margin: 16px;
+}
+.right {
+    max-width: 24%;
+    margin: 16px;
+}
