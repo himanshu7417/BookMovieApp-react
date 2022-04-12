@@ -5,21 +5,68 @@ import SingleImageList from "./SingleImageList";
 import ImageList from "@material-ui/core/ImageList";
 import ImageListItem from "@material-ui/core/ImageListItem";
 import ImageListItemBar from "@material-ui/core/ImageListItemBar";
-
 import "./Home.css";
-
+import SimpleCard, { userSelection } from "./filters";
+import genres from "./genre";
+import artists from "./artists";
 
 
 export default class Home extends Component {
 
+    
   
   constructor(props) {
     super(props);
 
     this.state = {
-      MoviesData: MoviesData
+      MoviesData: MoviesData,
+      genres: genres,
+      artists: artists,
+      userSelection: MoviesData,
     };
   }
+  filterHandler = () => {
+    if (
+      userSelection.name === "" &&
+      userSelection.releaseDateEnd === "" &&
+      userSelection.releaseDateStart === "" &&
+      userSelection.genres.length === 0 &&
+      userSelection.artists.length === 0
+    ) {
+      const state = this.state;
+      state.userSelection = MoviesData;
+      this.setState(state);
+      return MoviesData;
+    } 
+    
+    else {
+      const filteredMovies = this.state.data.filter((movie) => {
+        if (
+          movie.title.toLowerCase() === userSelection.name.toLowerCase()||
+          movie.genres.some((genre) => userSelection.genres.includes(genre)) ||parseInt(new Date(movie.release_date).getTime()) <=  parseInt(new Date(userSelection.releaseDateEnd).getTime())||
+          parseInt(new Date(movie.release_date).getTime()) >=  parseInt(new Date(userSelection.releaseDateStart).getTime()) || movie.artists.some((artist) =>
+            userSelection.artists.includes(
+              `${artist.first_name} ${artist.last_name}`
+            )
+          )
+        ) {
+          console.log(userSelection.releaseDateStart);
+          console.log(parseInt(new Date(movie.release_date).getTime()) >  parseInt(new Date(userSelection.releaseDateEnd).getTime()))
+          return movie;
+        }
+        else
+          return null;
+      });
+
+      const state = this.state;
+      state.userSelection = filteredMovies;
+
+      this.setState(state);
+    }
+  };
+
+
+
   render() {
     return (
       <div>
@@ -52,6 +99,11 @@ export default class Home extends Component {
 
           </div>
           <div className="right">
+          <SimpleCard
+              genres={this.state.genres}
+              artists={this.state.artists}
+              filterHandler={this.filterHandler}
+            />
            
           </div>
         </div>
