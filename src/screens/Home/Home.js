@@ -71,7 +71,7 @@ export default class Home extends Component {
   render() {
     return (
       <div>
-        <Header/>
+        {/* <Header/> */}
         <div className="headerBar">
           <span className="headerText">Upcoming Movies</span>
         </div><br />

@@ -4,13 +4,27 @@ import './index.css';
 import reportWebVitals from './reportWebVitals';
 import Home from './screens/Home/Home'
 import Details from './screens/details/Details'
-import { BrowserRouter, Routes, Route,} from "react-router-dom";
+import { BrowserRouter, Routes, Route, Link} from "react-router-dom";
+import Header from './common/Header/Header';
+import BookShow from "../src/screens/bookShow/BookShow";
+import Confirmation from "../src/screens/confirmation/Confirmation";
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
+    <Header   btnType="bookshowbtn" buttonName="BOOK SHOW"/>
       <Routes>
         <Route path='/'   element={<Home  />} />
         <Route path='details'  element={<Details />} />
+        <Route
+          path="/bookshow/:id"
+          element={<BookShow  />}
+          
+        />
+        <Route
+          path="/confirm/:id"
+          element={<Confirmation />}
+        
+        />
       </Routes>
     </BrowserRouter>,
   </React.StrictMode>,
