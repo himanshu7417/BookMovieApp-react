@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
   child: {
     minWidth: 240,
     maxWidth: 240,
-    margin: theme.spacing.unit,
+    maxHeight: 300,
   },
 
   bullet: {
