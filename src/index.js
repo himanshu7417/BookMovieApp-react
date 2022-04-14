@@ -9,7 +9,7 @@ import Header from './common/Header/Header';
 import BookShow from "../src/screens/bookShow/BookShow";
 import Confirmation from "../src/screens/confirmation/Confirmation";
 ReactDOM.render(
-  <React.StrictMode>
+  <React.StrictMode> 
     <BrowserRouter>
     <Header   btnType="bookshowbtn" buttonName="BOOK SHOW"/>
       <Routes>
@@ -17,7 +17,7 @@ ReactDOM.render(
         <Route path='details'  element={<Details />} />
         <Route
           path="/bookshow/:id"
-          element={<BookShow  />}
+          element={<BookShow />}
           
         />
         <Route
