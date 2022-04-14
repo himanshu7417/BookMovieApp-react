@@ -9,6 +9,7 @@ import "./Home.css";
 import SimpleCard, { userSelection } from "./filters";
 import genres from "./genre";
 import artists from "./artists";
+import { Link } from "react-router-dom";
 
 
 export default class Home extends Component {
@@ -80,11 +81,9 @@ export default class Home extends Component {
             <ImageList cols={4} rowHeight={400}>
               {this.state.MoviesData.map((item) => (
                 <ImageListItem key={item.id} className="Image-List">
-                  <img
-                    src={item.poster_url}
-                    alt={item.title}
-                    className="MoviesPoster"
-                  />
+                <Link to="/details" state={{ movie: item }}>
+                <img className="image" src={item.poster_url} alt={item.title} />
+                </Link> 
 
                   <ImageListItemBar
                     title={item.title}
